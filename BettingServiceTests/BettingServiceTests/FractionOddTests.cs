@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BettingService.Tests.DTO;
+using BettingService.Tests.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BettingService.Tests
@@ -34,11 +30,10 @@ namespace BettingService.Tests
             //Arrange
             var odd1 = 10;
             var odd2 = 0;
-            var expectedDecimalOdd = 11;
             var fractionOdd = new FractionOdd(odd1, odd2);
 
             //Act
-            var decimalOdd = fractionOdd.ConvertToDecimal();
+            fractionOdd.ConvertToDecimal();
         }
 
         [TestMethod]

@@ -1,4 +1,4 @@
-namespace BettingService.Tests.DTO
+namespace BettingService.Tests.Domain
 {
     public class Bookmaker
     {

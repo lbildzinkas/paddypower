@@ -62,18 +62,34 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DTO\Bookmaker.cs" />
-    <Compile Include="DTO\FractionOdd.cs" />
+    <Compile Include="Domain\Bet.cs" />
+    <Compile Include="Domain\Bookmaker.cs" />
+    <Compile Include="Domain\Consts.cs" />
+    <Compile Include="Domain\CustomResult.cs" />
+    <Compile Include="Domain\Event.cs" />
+    <Compile Include="Domain\EventResults.cs" />
+    <Compile Include="Domain\FractionOdd.cs" />
+    <Compile Include="Domain\Market.cs" />
+    <Compile Include="Domain\Sport.cs" />
+    <Compile Include="Domain\WinningCondition.cs" />
+    <Compile Include="Factories\WinnningValidationStrategyFactory.cs" />
     <Compile Include="FractionOddTests.cs" />
-    <Compile Include="ProfitCalculatorService.cs" />
+    <Compile Include="IBettingEvent.cs" />
+    <Compile Include="Services\EventService.cs" />
+    <Compile Include="Services\IProfitCalculatorService.cs" />
+    <Compile Include="Services\IWinningValidationStrategy.cs" />
+    <Compile Include="Services\ProfitCalculatorService.cs" />
     <Compile Include="ProfitCalculatorServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DTO\Punter.cs" />
-    <Compile Include="DTO\Selection.cs" />
+    <Compile Include="Domain\Punter.cs" />
+    <Compile Include="Domain\Selection.cs" />
+    <Compile Include="Strategies\FootballWinningValidationStrategy.cs" />
+    <Compile Include="Strategies\TennisWinningValidationStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
