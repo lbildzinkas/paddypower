@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BettingServices.Domain
 {
-    public class Event : IEvent
+    public class Event
     {
         public Guid Id { get; set; }
         public string Description { get; set; }
