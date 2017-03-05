@@ -47,6 +47,7 @@
     <Compile Include="DomainServices\IProfitCalculatorService.cs" />
     <Compile Include="DomainServices\ProfitCalculatorService.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventBuilder.cs" />
     <Compile Include="EventResults.cs" />
     <Compile Include="Factories\WinnningValidationStrategyFactory.cs" />
     <Compile Include="FractionOdd.cs" />

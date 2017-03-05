@@ -5,6 +5,6 @@ namespace BettingServices.Domain.Strategies
 {
     public interface IWinningValidationStrategy
     {
-        Task<IEnumerable<Selection>> GetWinningSelectionsAsync(Event bettingEvent);
+        IEnumerable<Selection> GetWinningSelections(Event bettingEvent);
     }
 }

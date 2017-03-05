@@ -10,60 +10,60 @@ namespace BettingService.Tests
     public class FootballWinningValidationStrategyTests
     {
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_TeamAWonOutrightTest()
+        public void GetWinningSelectionsAsync_TeamAWonOutrightTest()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEvent().WithScore(1, 0);
             var expectedSelections =
                 outrightBetsEvent.Markets[0].Selections.Where(
                     s => s.WinningCondition.IsOutright && s.WinningCondition.TeamAWin).Select(s => s.Id);
-            var selections = await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
-            
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
+
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }
 
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_TeamBWonOutrightTest()
+        public void GetWinningSelectionsAsync_TeamBWonOutrightTest()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEvent().WithScore(0, 1);
             var expectedSelections =
                 outrightBetsEvent.Markets[0].Selections.Where(
                     s => s.WinningCondition.IsOutright && s.WinningCondition.TeamBWin).Select(s => s.Id);
-            var selections = await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
 
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }
 
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_DrawOutrightTest()
+        public void GetWinningSelectionsAsync_DrawOutrightTest()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEvent().WithScore(0, 0);
             var expectedSelections =
                 outrightBetsEvent.Markets[0].Selections.Where(
                     s => s.WinningCondition.IsOutright && s.WinningCondition.Draw).Select(s => s.Id);
-            var selections = await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
 
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }
 
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_TeamAWonForOneScoreTest()
+        public void GetWinningSelectionsAsync_TeamAWonForOneScoreTest()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEventScoreMarket().WithScore(1, 0);
             var expectedSelections =
                 outrightBetsEvent.Markets[0].Selections.Where(
-                    s => s.WinningCondition.TeamAWin && s.WinningCondition.TeamAScore == 1 
+                    s => s.WinningCondition.TeamAWin && s.WinningCondition.TeamAScore == 1
                     && s.WinningCondition.TeamBScore == 0).Select(s => s.Id);
-            var selections = await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
 
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }
 
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_TeamBWonForOneScoreTest()
+        public void GetWinningSelectionsAsync_TeamBWonForOneScoreTest()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEventScoreMarket().WithScore(0, 1);
@@ -71,13 +71,13 @@ namespace BettingService.Tests
                 outrightBetsEvent.Markets[0].Selections.Where(
                     s => s.WinningCondition.TeamBWin && s.WinningCondition.TeamAScore == 0
                     && s.WinningCondition.TeamBScore == 1).Select(s => s.Id);
-            var selections = await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
 
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }
 
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_DrawNoGoalsScoreTest()
+        public void GetWinningSelectionsAsync_DrawNoGoalsScoreTest()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEventScoreMarket().WithScore(0, 0);
@@ -85,13 +85,13 @@ namespace BettingService.Tests
                 outrightBetsEvent.Markets[0].Selections.Where(
                     s => s.WinningCondition.Draw && s.WinningCondition.TeamAScore == 0
                     && s.WinningCondition.TeamBScore == 0).Select(s => s.Id);
-            var selections =  await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
 
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }
 
         [TestMethod]
-        public async Task GetWinningSelectionsAsync_BothMarketsTeamAWonForOne()
+        public void GetWinningSelectionsAsync_BothMarketsTeamAWonForOne()
         {
             var footballStrategy = new FootballWinningValidationStrategy();
             var outrightBetsEvent = EventFactory.CreateFootballEventTwoMarkets().WithScore(1, 0);
@@ -101,7 +101,7 @@ namespace BettingService.Tests
             expectedSelections.AddRange(outrightBetsEvent.Markets[1].Selections.Where(
                     s => s.WinningCondition.TeamAWin && s.WinningCondition.TeamAScore == 1
                     && s.WinningCondition.TeamBScore == 0).Select(s => s.Id).ToList());
-            var selections = await footballStrategy.GetWinningSelectionsAsync(outrightBetsEvent);
+            var selections = footballStrategy.GetWinningSelections(outrightBetsEvent);
 
             Assert.IsTrue(selections.All(s => expectedSelections.Contains(s.Id)));
         }

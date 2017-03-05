@@ -1,4 +1,3 @@
-using BettingService.Tests.Strategies;
 using BettingServices.Domain.Strategies;
 
 namespace BettingServices.Domain.Factories

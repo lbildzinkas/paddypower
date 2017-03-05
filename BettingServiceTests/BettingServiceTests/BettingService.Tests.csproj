@@ -67,6 +67,7 @@
     <Compile Include="FractionOddTests.cs" />
     <Compile Include="ProfitCalculatorServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TennisWinningValidationStrategyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -19,7 +19,7 @@ namespace BettingServices.Services
         public async Task<decimal> CalculateEventProfitAsync(Event bettingEvent)
         {
             var winningValidationStrategy = WinnningValidationStrategyFactory.GetStrategy(bettingEvent.EventSport);
-            var winnerSelections = await winningValidationStrategy.GetWinningSelectionsAsync(bettingEvent);
+            var winnerSelections = winningValidationStrategy.GetWinningSelections(bettingEvent);
             var winnerSelectionsHashset = new HashSet<Guid>(winnerSelections.Select(w => w.Id));
             return await _profitCalculatorService.CalculateAsync(bettingEvent, winnerSelectionsHashset);
         }

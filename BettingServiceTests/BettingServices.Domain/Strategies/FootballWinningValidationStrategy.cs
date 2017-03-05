@@ -6,44 +6,38 @@ namespace BettingServices.Domain.Strategies
 {
     public class FootballWinningValidationStrategy : IWinningValidationStrategy
     {
-        public async Task<IEnumerable<Selection>> GetWinningSelectionsAsync(Event bettingEvent)
+        public IEnumerable<Selection> GetWinningSelections(Event bettingEvent)
         {
-            return await Task.Run(() =>
+            var winnerSelections = new List<Selection>();
+            var results = bettingEvent.Results;
+            Parallel.ForEach(bettingEvent.Markets, market =>
             {
-                var winnerSelections = new List<Selection>();
-                var results = bettingEvent.Results;
-                Parallel.ForEach(bettingEvent.Markets, async market =>
+                var selections = ValidateResults(market, results);
+                Object lockMe = new Object();
+                lock (lockMe)
                 {
-                    var selections = await ValidateResultsAsync(market, results);
+                    winnerSelections.AddRange(selections);
+                }
+            });
+
+            return winnerSelections;
+        }
+
+        private IEnumerable<Selection> ValidateResults(Market market, EventResults results)
+        {
+            var winnerSelections = new List<Selection>();
+            Parallel.ForEach(market.Selections, selection =>
+            {
+                if (ValidateFootballSelection(selection, results))
+                {
                     Object lockMe = new Object();
                     lock (lockMe)
                     {
-                        winnerSelections.AddRange(selections);
+                        winnerSelections.Add(selection);
                     }
-                });
-
-                return winnerSelections;
+                }
             });
-        }
-
-        private async Task<IEnumerable<Selection>> ValidateResultsAsync(Market market, EventResults results)
-        {
-            return await Task.Run(() =>
-            {
-                var winnerSelections = new List<Selection>();
-                Parallel.ForEach(market.Selections, selection =>
-                {
-                    if (ValidateFootballSelection(selection, results))
-                    {
-                        Object lockMe = new Object();
-                        lock (lockMe)
-                        {
-                            winnerSelections.Add(selection);
-                        }
-                    }
-                });
-                return winnerSelections;
-            });
+            return winnerSelections;
         }
 
 

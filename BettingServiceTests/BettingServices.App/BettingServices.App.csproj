@@ -49,6 +49,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BettingServices.Domain\BettingServices.Domain.csproj">
+      <Project>{B2728526-FD85-418A-B722-829DDD14E7DD}</Project>
+      <Name>BettingServices.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BettingServices.Services\BettingServices.Services.csproj">
+      <Project>{3090373d-de09-46b2-a85d-6cd0ef544a71}</Project>
+      <Name>BettingServices.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
