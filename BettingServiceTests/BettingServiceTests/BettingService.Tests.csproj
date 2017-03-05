@@ -62,34 +62,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Domain\Bet.cs" />
-    <Compile Include="Domain\Bookmaker.cs" />
-    <Compile Include="Domain\Consts.cs" />
-    <Compile Include="Domain\CustomResult.cs" />
-    <Compile Include="Domain\Event.cs" />
-    <Compile Include="Domain\EventResults.cs" />
-    <Compile Include="Domain\FractionOdd.cs" />
-    <Compile Include="Domain\Market.cs" />
-    <Compile Include="Domain\Sport.cs" />
-    <Compile Include="Domain\WinningCondition.cs" />
-    <Compile Include="Factories\WinnningValidationStrategyFactory.cs" />
+    <Compile Include="Factories\EventFactory.cs" />
+    <Compile Include="FootballWinningValidationStrategyTests.cs" />
     <Compile Include="FractionOddTests.cs" />
-    <Compile Include="IBettingEvent.cs" />
-    <Compile Include="Services\EventService.cs" />
-    <Compile Include="Services\IProfitCalculatorService.cs" />
-    <Compile Include="Services\IWinningValidationStrategy.cs" />
-    <Compile Include="Services\ProfitCalculatorService.cs" />
     <Compile Include="ProfitCalculatorServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Punter.cs" />
-    <Compile Include="Domain\Selection.cs" />
-    <Compile Include="Strategies\FootballWinningValidationStrategy.cs" />
-    <Compile Include="Strategies\TennisWinningValidationStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BettingServices.App\BettingServices.App.csproj">
+      <Project>{78e01957-00e0-418e-85bb-1d024000d116}</Project>
+      <Name>BettingServices.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BettingServices.Domain\BettingServices.Domain.csproj">
+      <Project>{b2728526-fd85-418a-b722-829ddd14e7dd}</Project>
+      <Name>BettingServices.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BettingServices.Services\BettingServices.Services.csproj">
+      <Project>{3090373d-de09-46b2-a85d-6cd0ef544a71}</Project>
+      <Name>BettingServices.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

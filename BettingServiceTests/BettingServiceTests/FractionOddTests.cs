@@ -1,5 +1,5 @@
 ﻿using System;
-using BettingService.Tests.Domain;
+using BettingServices.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BettingService.Tests
